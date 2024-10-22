@@ -10,20 +10,23 @@ public class Client {
 
     public static void main(String[] args){
 
-        System.out.println("Enter the number of point you want to estimate pi with:");
-        int n=sc.nextInt();
-
         try(Communicator communicator = Util.initialize(args)){
 
             com.zeroc.Ice.ObjectPrx base = communicator.stringToProxy("Master:default -p 10000");
 
-            Demo.MasterPrx master = Demo.MasterPrx.checkedCast(base);
+            ObjectPrx base = communicator.stringToProxy("Master:default -p 10000");
+            MasterPrx master = MasterPrx.checkedCast(base);
 
             if(master == null){
                 throw new Error("Invalid proxy");
             }
+
+            System.out.println("Enter the number of point you want to estimate pi with:");
+            int N=sc.nextInt();
+
+            double piEstimate = master.calculatePi(N);
             
-            System.out.println(master.calculatePi(int n));
+            System.out.println("The value of pi is: "+piEstimate);
 
         }
 
