@@ -3,7 +3,7 @@ module Demo{
     interface Master{
         void addWorker(Worker* w);
         void addClient(Client* c);
-        void calculatePi();
+        void calculatePi(int n);
         void requestPoints(int n);
     }
     
