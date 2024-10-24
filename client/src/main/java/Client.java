@@ -12,7 +12,7 @@ public class Client {
 
         try(Communicator communicator = Util.initialize(args)){
 
-            com.zeroc.Ice.ObjectPrx base = communicator.stringToProxy("Master:default -p 10000");
+            //com.zeroc.Ice.ObjectPrx base = communicator.stringToProxy("Master:default -p 10000");
 
             ObjectPrx base = communicator.stringToProxy("Master:default -p 10000");
             MasterPrx master = MasterPrx.checkedCast(base);
