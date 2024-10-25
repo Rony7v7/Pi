@@ -1,7 +1,6 @@
 module Demo{
 
-    interface Client{
-        void requestPi(int n);
+    interface Subscriber{
         void onUpdate(double pi);
     }
 
