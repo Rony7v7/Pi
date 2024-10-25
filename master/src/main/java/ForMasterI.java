@@ -3,6 +3,7 @@ import Demo.ForWorkerPrx;
 import com.zeroc.Ice.Current;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 
@@ -45,15 +46,20 @@ public class ForMasterI implements Demo.ForMaster {
         int result = 0;
         int n = pointsPerWorker(N);
 
+        Calendar initialTime = Calendar.getInstance();
 
         for (ForWorkerPrx worker : workers) {
 
             result += worker.throwPoints(n);
             System.out.println(result);
 
-
         }
+        
         double pi = 4 * ((double) result /N);
+
+        Calendar finalTime = Calendar.getInstance();
+        long time = finalTime.getTimeInMillis() - initialTime.getTimeInMillis();
+        System.out.println("Time: " + time + "ms");
 
         notifyResult(name, pi);
 
